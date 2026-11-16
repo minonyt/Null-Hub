@@ -1,10 +1,10 @@
 -- ================= CONFIG =================
-local HUB_NAME = "NULL-HUB"                
+local HUB_NAME = "VOIDHUB"                -- your edgy hub name (ending in "hub")
 local KEY_LINK = "https://your-link-here" -- the link that gets copied
 ---------------------------------------------
 
 local Players = game:GetService("Players")
-local player  = Players:WaitForChild("LocalPlayer")
+local player  = Players.LocalPlayer or Players.PlayerAdded:Wait()
 
 local gui = Instance.new("ScreenGui")
 gui.Name = "KeyHub"
