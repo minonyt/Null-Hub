@@ -14,13 +14,13 @@ gui.ResetOnSpawn = false
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 gui.Parent = player:WaitForChild("PlayerGui")
 
--- ============ Backdrop ============
+-- ============ Backdrop (thin glow ring around the panel) ============
 local backdrop = Instance.new("Frame")
 backdrop.Name = "Backdrop"
-backdrop.Size = UDim2.new(0, 500, 0, 330)
-backdrop.Position = UDim2.new(0.5, -250, 0.5, -165)
+backdrop.Size = UDim2.new(0, 344, 0, 214)
+backdrop.Position = UDim2.new(0.5, -172, 0.5, -107)
 backdrop.BackgroundColor3 = Color3.fromRGB(9, 5, 16)
-backdrop.BackgroundTransparency = 0.6
+backdrop.BackgroundTransparency = 0.55
 backdrop.BorderSizePixel = 0
 backdrop.ZIndex = 1
 backdrop.Parent = gui
@@ -35,50 +35,13 @@ Instance.new("UICorner", backdrop).CornerRadius = UDim.new(0, 14)
 local bStroke = Instance.new("UIStroke", backdrop)
 bStroke.Color = Color3.fromRGB(122, 58, 205)
 bStroke.Thickness = 1.5
-bStroke.Transparency = 0.45
-
--- small purple lightning flickers, top-left corner of the backdrop
-local function spawnBolt()
-    local w = math.random(2, 3)
-    local h = math.random(12, 40)
-
-    local bolt = Instance.new("Frame")
-    bolt.Name = "Bolt"
-    bolt.Parent = backdrop
-    bolt.ZIndex = 2
-    bolt.BorderSizePixel = 0
-    bolt.BackgroundColor3 = Color3.fromRGB(170, 110, 255)
-    bolt.BackgroundTransparency = 1
-    bolt.Size = UDim2.new(0, w, 0, h)
-    bolt.Position = UDim2.new(0, math.random(4, 180), 0, math.random(4, 160))
-
-    Instance.new("UICorner", bolt).CornerRadius = UDim.new(0, 2)
-    local glow = Instance.new("UIStroke", bolt)
-    glow.Color = Color3.fromRGB(150, 90, 255)
-    glow.Thickness = 2
-    glow.Transparency = 0.5
-
-    TweenService:Create(bolt, TweenInfo.new(0.05, Enum.EasingStyle.Sine), { BackgroundTransparency = 0 }):Play()
-    TweenService:Create(glow, TweenInfo.new(0.05, Enum.EasingStyle.Sine), { Transparency = 0.15 }):Play()
-    task.wait(0.08)
-    TweenService:Create(bolt, TweenInfo.new(0.2, Enum.EasingStyle.Sine), { BackgroundTransparency = 1 }):Play()
-    TweenService:Create(glow, TweenInfo.new(0.2, Enum.EasingStyle.Sine), { Transparency = 1 }):Play()
-    task.wait(0.25)
-    bolt:Destroy()
-end
-
-task.spawn(function()
-    while true do
-        spawnBolt()
-        task.wait(math.random(0.15, 0.6))
-    end
-end)
+bStroke.Transparency = 0.4
 
 -- ============ Main panel ============
 local main = Instance.new("Frame")
 main.Name = "Main"
-main.Size = UDim2.new(0, 420, 0, 250)
-main.Position = UDim2.new(0.5, -210, 0.5, -125)
+main.Size = UDim2.new(0, 320, 0, 190)
+main.Position = UDim2.new(0.5, -160, 0.5, -95)
 main.BackgroundColor3 = Color3.fromRGB(18, 10, 28)
 main.BorderSizePixel = 0
 main.ZIndex = 3
@@ -99,13 +62,13 @@ stroke.Transparency = 0.15
 -- Title
 local title = Instance.new("TextLabel")
 title.Name = "Title"
-title.Size = UDim2.new(0.55, 0, 0, 32)
-title.Position = UDim2.new(0, 16, 0, 16)
+title.Size = UDim2.new(0, 170, 0, 28)
+title.Position = UDim2.new(0, 14, 0, 12)
 title.ZIndex = 4
 title.BackgroundTransparency = 1
 title.Text = HUB_NAME
 title.Font = Enum.Font.GothamBlack
-title.TextSize = 30
+title.TextSize = 26
 title.TextXAlignment = Enum.TextXAlignment.Left
 title.TextColor3 = Color3.fromRGB(210, 170, 255)
 title.Parent = main
@@ -114,7 +77,7 @@ title.Parent = main
 local version = Instance.new("Frame")
 version.Name = "Version"
 version.Size = UDim2.new(0, 54, 0, 18)
-version.Position = UDim2.new(1, -70, 0, 20)
+version.Position = UDim2.new(1, -66, 0, 16)
 version.BackgroundColor3 = Color3.fromRGB(110, 50, 200)
 version.BorderSizePixel = 0
 version.ZIndex = 4
@@ -135,8 +98,8 @@ versionLabel.Parent = version
 -- Tagline
 local tagline = Instance.new("TextLabel")
 tagline.Name = "Tagline"
-tagline.Size = UDim2.new(1, -32, 0, 16)
-tagline.Position = UDim2.new(0, 16, 0, 50)
+tagline.Size = UDim2.new(1, -28, 0, 14)
+tagline.Position = UDim2.new(0, 14, 0, 42)
 tagline.ZIndex = 4
 tagline.BackgroundTransparency = 1
 tagline.Text = "unofficial • key access system"
@@ -146,11 +109,11 @@ tagline.TextXAlignment = Enum.TextXAlignment.Left
 tagline.TextColor3 = Color3.fromRGB(150, 130, 185)
 tagline.Parent = main
 
--- Key input (empty by default, just shows the centered placeholder)
+-- Key input (empty by default, centered placeholder)
 local input = Instance.new("TextBox")
 input.Name = "KeyInput"
-input.Size = UDim2.new(1, -32, 0, 44)
-input.Position = UDim2.new(0, 16, 0, 74)
+input.Size = UDim2.new(1, -28, 0, 38)
+input.Position = UDim2.new(0, 14, 0, 62)
 input.ZIndex = 4
 input.BackgroundColor3 = Color3.fromRGB(30, 18, 44)
 input.BorderSizePixel = 0
@@ -159,7 +122,9 @@ input.PlaceholderText = "Input Key"
 input.PlaceholderColor3 = Color3.fromRGB(128, 96, 160)
 input.TextColor3 = Color3.fromRGB(232, 224, 240)
 input.Font = Enum.Font.Gotham
-input.TextSize = 16
+input.TextSize = 15
+input.TextXAlignment = Enum.TextXAlignment.Center
+input.PlaceholderTextXAlignment = Enum.TextXAlignment.Center
 input.ClearTextOnFocus = false
 input.Parent = main
 Instance.new("UICorner", input).CornerRadius = UDim.new(0, 6)
@@ -168,24 +133,20 @@ iStroke.Color = Color3.fromRGB(122, 58, 205)
 iStroke.Thickness = 1
 iStroke.Transparency = 0.5
 
-pcall(function()
-    input.PlaceholderTextXAlignment = Enum.TextXAlignment.Center
-end)
-
 -- Get key button
 local BTN_BASE = Color3.fromRGB(96, 44, 165)
 local BTN_HOVER = Color3.fromRGB(140, 80, 230)
 
 local btn = Instance.new("TextButton")
 btn.Name = "GetKey"
-btn.Size = UDim2.new(1, -32, 0, 44)
-btn.Position = UDim2.new(0, 16, 0, 132)
+btn.Size = UDim2.new(1, -28, 0, 38)
+btn.Position = UDim2.new(0, 14, 0, 108)
 btn.ZIndex = 4
 btn.BackgroundColor3 = BTN_BASE
 btn.BorderSizePixel = 0
 btn.Text = "Get Key"
 btn.Font = Enum.Font.GothamBold
-btn.TextSize = 17
+btn.TextSize = 16
 btn.TextColor3 = Color3.fromRGB(255, 255, 255)
 btn.Parent = main
 Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 6)
@@ -206,8 +167,8 @@ end)
 -- Footer
 local footer = Instance.new("TextLabel")
 footer.Name = "Footer"
-footer.Size = UDim2.new(1, -32, 0, 14)
-footer.Position = UDim2.new(0, 16, 0, 216)
+footer.Size = UDim2.new(1, -28, 0, 14)
+footer.Position = UDim2.new(0, 14, 0, 158)
 footer.ZIndex = 4
 footer.BackgroundTransparency = 1
 footer.Text = "© " .. HUB_NAME .. " • unofficial • free"
