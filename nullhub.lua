@@ -1,6 +1,6 @@
 -- ================= CONFIG =================
-local HUB_NAME    = "VOIDHUB"                  -- your edgy hub name
-local HUB_VERSION = "v1.0.3"                   -- version badge (looks legit)
+local HUB_NAME    = "Null-HUB"                  -- your edgy hub name
+local HUB_VERSION = "v1.0.6"                   -- version badge (looks legit)
 local KEY_LINK    = "https://your-link-here"   -- link copied to clipboard
 ---------------------------------------------
 
@@ -124,7 +124,6 @@ input.TextColor3 = Color3.fromRGB(232, 224, 240)
 input.Font = Enum.Font.Gotham
 input.TextSize = 15
 input.TextXAlignment = Enum.TextXAlignment.Center
-input.PlaceholderTextXAlignment = Enum.TextXAlignment.Center
 input.ClearTextOnFocus = false
 input.Parent = main
 Instance.new("UICorner", input).CornerRadius = UDim.new(0, 6)
