@@ -104,12 +104,6 @@ title.TextXAlignment = Enum.TextXAlignment.Left
 title.TextColor3 = Color3.fromRGB(210, 170, 255)
 title.Parent = main
 
-local titleGrad = Instance.new("GuiTextGradient", title)
-titleGrad.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(220, 190, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(140, 70, 235)),
-})
-
 -- Version badge
 local version = Instance.new("Frame")
 version.Name = "Version"
